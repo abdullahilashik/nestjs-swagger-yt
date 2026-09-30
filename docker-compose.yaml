@@ -1,0 +1,23 @@
+services:
+  app:
+    build:
+      context: Dockerfile
+    container_name: app-container_name
+    ports:
+      - "3000:3000"
+      - "80:80"
+    environment:
+      - NODE_ENV=development
+
+  mongo:
+    image: mongo
+    container_name: mongo-container
+    restart: always
+    environment:
+      - MONGO_INITDB_USERNAME=ashik
+      - MONGO_INITDB_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
